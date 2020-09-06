@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+
+    <!-- Interface styles -->
+    <link type="text/css" rel="stylesheet"
+        href="assets/jquery-ui-1.9.2.custom/css/no-theme/jquery-ui-1.9.2.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/apps/share/css-static/uniform.default.css">
+    <link type="text/css" rel="stylesheet" href="assets/apps/share/css-static/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="assets/apps/share/css-static/intlTelInput.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <style>
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Open Sans Light'), local('OpenSans-Light'), url(assets/fonts/open_sans/OpenSans-light.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(assets/fonts/open_sans/OpenSans.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(assets/fonts/open_sans/OpenSans-semibold.woff) format('woff');
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Open Sans Bold'), local('OpenSans-Bold'), url(assets/fonts/open_sans/OpenSans-bold.woff) format('woff');
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-wrapper">
+                <div class="menu-left">
+                    <button class="button arrow-left"><img class="img-left"
+                            src="assets\apps\share\img\sprites\modal-share\back@2x.png" alt="Arrow left"></button>
+                    <button class="button arrow-top"><img class="img-top"
+                            src="assets\apps\share\img\sprites\modal-share\back@2x.png" alt="Arrow top"></button>
+                    <button class="button arrow-right"><img class="img-right"
+                            src="assets\apps\share\img\sprites\modal-share\back@2x.png" alt="Arrow right"></button>
+                </div>
+                <div class="title">
+                    <h1>TCO calculator</h1>
+                </div>
+                <div class="menu-right">
+                    <button class="button btn-save" id="file-save"><img src="assets\apps\share\img\images\file.svg"
+                            alt=""></button>
+                    <button class="button btn-home"><img src="assets\apps\share\img\images\home.svg" alt=""></button>
+                    <button class="button btn-menu" onclick="openNav()"><img src="assets\apps\share\img\images\bars.svg"
+                            alt=""></button>
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a href="https://www.investopedia.com/terms/t/totalcostofownership.asp" target="_blank">What is
+                            TCO?</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main-wrapper">
+                <section class="product">
+                    <div class="text-left">
+                        <h2 class="title-product">Total Cost of Ownership</h2>
+                        <p><small>TCO calculator is only for illustration and estimation of each product.</small></p>
+                        <p><small>Total Biaya tersebut diatas hanya untuk ilustrasi dan perkiraan dari setiap
+                                product.</small></p>
+                    </div>
+                    <img src="assets\apps\share\img\images\chassis.png" alt="chassis">
+                </section>
+                <section class="choose">
+                    <div class="choose-vers">
+                        <h3>Select chassis version</h3>
+                        <ol id="selectable" class="list-version">
+                            <li class="ui-state-default ui-selected">Front Engine chassis</li>
+                            <li class="ui-state-default">Real Engine chassis</li>
+                        </ol>
+                    </div>
+                    <div class="choose-type">
+                        <h3>Select chassis</h3>
+                        <ol id="selectableChassis" class="list-chassis">
+                            <li class="ui-state-default ui-selected">OF 917 4250 MT</li>
+                            <li class="ui-state-default">OF 917 5300 MT</li>
+                            <li class="ui-state-default">OF 1623</li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+            <div class="form-wrapper">
+                <div class="left-table">
+                    <img src="assets\apps\share\img\images\logo.PNG" alt="logo">
+                    <span id="ver">OC 500 2542 RF</span>
+                    <p>Constant parameters</p>
+                    <span id=cons-cost>IDR 56 029 057,14</span>
+                    <p>Operational Costs</p>
+                    <span id="cost">- - -</span>
+                    <p>TCO per month</p>
+                    <span id="per-month">- - -</span>
+                </div>
+                <div class="form-container">
+                    <form id="myForm" method='post' action='' onsubmit="return validate()">
+                        <span class="error" aria-live="polite"></span>
+                        <label for="Dname">Drive per month</label>
+                        <input type="number" placeholder="IDR 3 500 000,00" name="Dname" id="dmp" pattern="\d+"
+                            required>
+
+                        <label for="">Operational mileage per day</label>
+                        <input type="number" placeholder="200" id="ompd" maxlength="6" name="OPname" required>
+
+                        <label for="">Operational days per month</label>
+                        <input type="number" placeholder="20" id="odpm" name="ODname" required>
+
+                        <label for="">Mileage per month</label>
+                        <input type="number" placeholder="4 000" id="mpm" name="MPname" required>
+
+                        <label for="">Mileage per year</label>
+                        <input type="number" placeholder="48 000" id="mpy" name="MPYname" required>
+
+                        <label for="">Vehicle life time in years</label>
+                        <input type="number" placeholder="5" id="vlt" name="VLTname" required>
+
+                        <label for="">Interest rate per month</label>
+                        <input type="number" placeholder="1%" id="irpm" min="0" max="1" step="0.00" name="IRPname"
+                            required>
+
+                        <label for="">Diesel price per liter(Pertomina Dex)</label>
+                        <input type="number" placeholder="IDR 5 500,00" id="dpp" name="DPPname" required>
+
+                        <label for="">Road expenses(Toll, etc.) per month</label>
+                        <input type="number" placeholder="IDR 5 000 000,00" id="rep" name="REname" required>
+
+                        <label for="">Yearly registration cost(STNK, KIR, etc.)</label>
+                        <input type="number" placeholder="IDR 10 000 000,00" id="yrc" name="YRname" required>
+
+                        <label for="">Registration cost per month(STNK, KIR, etc.)</label>
+                        <input type="number" placeholder="IDR 833 333,33" id="rcm" name="RCname" required>
+
+                    </form>
+
+                </div>
+                <div class="right-table">
+                    <input type="text" placeholder="Enter competitor name" id="comp-name">
+                    <p>Constant parameters</p>
+                    <span id="cons-cost2">IDR 56 029 057,14</span>
+                    <p>Operational Costs</p>
+                    <span id="cost2">- - -</span>
+                    <p>TCO per month</p>
+                    <span id="per-month2">- - -</span>
+                </div>
+
+            </div>
+        </main>
+        <footer>
+            <div class="footer-wrapper">
+                <button class="btn-left btn-only-js">TCO for Mercedes-Benz only</button>
+                <button class="btn-right btn-competitors-js">Comparison with the competitors</button>
+            </div>
+            <div class="footer-form">
+                <button class="btn-left btn-back">Back</button>
+                <div class="info">
+                    <p><small>TCO calculator is only for illustration and estimation of each product.</small></p>
+                    <p><small>Total Biaya tersebut diatas hanya untuk ilustrasi dan perkiraan dari setiap
+                            product.</small></p>
+                </div>
+                <button type="submit" form="myForm" value="submit" class="btn-right btn-next">Next</button>
+            </div>
+
+        </footer>
+    </div>
+
+
+    <script type="text/javascript" src="assets/react/es5-sham.min.js"></script>
+    <script type="text/javascript" src="assets/react/es5-shim.min.js"></script>
+    <script type="text/javascript" src="assets/html5shim/html5.js"></script>
+    <script type="text/javascript" src="assets/json2/json2.js"></script>
+    <script type="text/javascript" src="assets/scripts.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+
+</html>

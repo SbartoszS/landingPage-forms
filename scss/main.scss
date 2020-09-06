@@ -1,0 +1,502 @@
+@import 'config/mixins';
+@import 'components/button';
+
+body {
+    background-image: linear-gradient(rgb(3, 3, 2) 30%, rgb(38, 40, 39) 99%);
+    width: 100%;
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+li {
+    color: #e5e5e5;
+    font-weight: 100;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 5px;
+
+    @include media(medium) {
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+}
+
+.menu-left {
+    display: flex;
+}
+
+.title {
+    margin: 20px;
+    text-align: center;
+    order: 3;
+    width: 100%;
+
+    @include media(medium) {
+        width: auto;
+        order: 2;
+    }
+
+    h1 {
+        font-family: 'Open Sans Semibold';
+        font-size: 24px;
+
+        @include media(medium) {
+            font-size: 30px;
+        }
+    }
+}
+
+.menu-right {
+    display: flex;
+
+    @include media(medium) {
+        order: 3;
+    }
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+main {
+    flex: 1 0 auto;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include media(medium) {
+        flex-direction: row;
+        margin-top: 80px;
+        margin-left: 5px;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    .text-left {
+        h2 {
+            text-align: center;
+            margin: 10px;
+            font-size: 20px;
+            font-family: 'OpenSans';
+
+            @include media(medium) {
+                text-align: left;
+                font-size: 24px;
+                margin: 10px 0;
+            }
+        }
+
+        p {
+            text-align: center;
+            padding: 0 10px;
+            margin: 0;
+
+            @include media(medium) {
+                text-align: left;
+                padding: 0;
+                font-size: 10px;
+            }
+        }
+    }
+
+    img {
+        width: 210px;
+        height: auto;
+        margin: 10px;
+
+        @include media(medium) {
+            width: 350px;
+            margin: 0;
+        }
+    }
+}
+
+
+.choose {
+    margin: 5px;
+}
+
+.choose-vers {
+    margin-right: 10px;
+    margin-bottom: 30px;
+
+    h3 {
+        position: relative;
+        font-family: 'OpenSans-Light';
+        font-size: 18px;
+        text-align: center;
+        margin: 10px 0;
+
+        @include media(medium) {
+            font-size: 20px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0%;
+            height: 1px;
+            width: 100%;
+            margin-top: 15px;
+            background-color: #8f8d98;
+        }
+
+        @include media(medium) {
+            text-align: left;
+        }
+    }
+
+    .list-version {
+        .ui-state-default {
+            position: relative;
+            text-align: center;
+            font-size: 16px;
+            padding: 8px 5px;
+            margin: 0 auto;
+            cursor: pointer;
+            outline: none;
+            border: none;
+
+            @include media(medium) {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.choose-type {
+    margin-right: 10px;
+
+    h3 {
+        position: relative;
+        text-align: center;
+        font-family: OpenSans-Light;
+        font-size: 18px;
+
+        @include media(medium) {
+            font-size: 20px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0%;
+            height: 1px;
+            width: 100%;
+            margin-top: 15px;
+            background-color: #8f8d98;
+        }
+
+        @include media(medium) {
+            text-align: left;
+        }
+    }
+
+    .list-chassis {
+        .ui-state-default {
+            outline: none;
+            position: relative;
+            text-align: center;
+            font-size: 14px;
+            padding: 8px 5px;
+            margin: 0 auto;
+            cursor: pointer;
+            border: none;
+
+            @include media(medium) {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+.footer-wrapper {
+    display: flex;
+    position: static;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+#selectable .ui-selected,
+#selectableChassis .ui-selected {
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0%;
+        height: 2px;
+        width: 100%;
+        margin-top: 5px;
+        background-color: #00adef;
+        box-shadow: 0px 0px 15px 2px #00adef;
+    }
+}
+
+#selectable,
+#selectableChassis {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin: 10px;
+
+    @include media(medium) {
+        margin: 50px;
+    }
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include media(medium) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 60px;
+    }
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    order: 1;
+
+    @include media(medium) {
+        order: 2;
+        width: 55%;
+    }
+
+    form {
+        @include media(medium) {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        label {
+            font-size: 11px;
+
+            @include media(medium) {
+                margin-right: 5px;
+                width: 30%;
+            }
+        }
+
+        input {
+            background-color: transparent;
+            border-radius: 15px;
+            color: white;
+            padding-left: 10px;
+            height: 25px;
+
+            @include media(medium) {
+                width: 40%;
+            }
+
+        }
+    }
+}
+
+.left-table,
+.right-table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
+    @include media(medium) {
+        margin: 5px;
+    }
+
+    img {
+        width: 120px;
+        height: auto;
+    }
+
+    input {
+        background-color: transparent;
+        border-radius: 15px;
+        height: 25px;
+        width: 130px;
+        font-size: 12px;
+        padding: 3px 8px;
+        text-align: center;
+        color: white;
+    }
+
+    span {
+        font-size: 18px;
+        margin: 5px 0;
+        color: #e5e5e5;
+        text-transform: uppercase;
+
+        @include media(medium) {
+            font-size: 14px;
+        }
+    }
+
+    p {
+        font-size: 14px;
+        margin: 10px 10px 1px 10px;
+
+        @include media(medium) {
+            font-size: 12px;
+        }
+    }
+}
+
+.left-table {
+    order: 2;
+
+    @include media(medium) {
+        order: 1;
+    }
+}
+
+.right-table {
+    order: 3;
+}
+
+::placeholder {
+    font-size: 11px;
+}
+
+
+.footer-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    @include media(medium) {
+        justify-content: space-between;
+    }
+
+
+    .btn-back {
+        order: 1;
+
+        @include media(medium) {
+            width: 120px;
+        }
+    }
+
+    .btn-next {
+        order: 2;
+
+        @include media(medium) {
+            width: 120px;
+        }
+    }
+
+    .info {
+        order: 3;
+        padding: 0 10px;
+
+        @include media(medium) {
+            order: 2;
+        }
+
+        p {
+            text-align: center;
+            margin: 0;
+        }
+    }
+}
+
+input.invalid {
+    border: 2px solid red !important;
+}
+
+input.valid {
+    border: 2px solid green !important;
+}
+
+.error {
+    display: none;
+    margin-left: 10px;
+}
+
+.error_show {
+    color: red;
+    margin-left: 10px;
+}
+
+.disable {
+    display: none;
+}
+
+.active {
+    display: flex;
+}
